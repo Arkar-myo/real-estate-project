@@ -1,0 +1,27 @@
+# Python files
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual environments
+venv/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# IDE-specific files
+.idea/
+.vscode/
+
+# Flask-specific files
+flask_session.db
+
+# Sensitive data
+secrets.txt
+api_keys.txt
+
+# Temporary files
+*.DS_Store
+*.swp
