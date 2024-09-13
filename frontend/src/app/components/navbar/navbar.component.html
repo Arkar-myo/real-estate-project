@@ -1,0 +1,26 @@
+<nav class="navbar-container">
+    <div class="left-con">
+        <div class="logo">
+            <img src="assets/homeLogo.png" alt="Logo">
+        </div>
+        <div class="nav-item-list">
+            <a class="nav-btn" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+            <a class="nav-btn" routerLink="/users" *ngIf="checkAdmin()" routerLinkActive="active">Users</a>
+            <a class="nav-btn" (click)="editUser()"  routerLinkActive="active">Profile</a>
+            <a class="nav-btn" (click)="onClickBuy()" *ngIf="checkUser()"   routerLinkActive="active">Premium</a>
+            <a class="nav-btn" routerLink="/transactions" *ngIf="checkAdmin()"   routerLinkActive="active">Transactions</a>
+        </div>
+
+    </div>
+
+    <div class="right-con">
+        <button routerLink="/login" class="logout-btn" (click)="logout()" routerLinkActive="active">Logout</button>
+        <!-- <input id="checkbox2" type="checkbox">
+        <label class="toggle toggle2" for="checkbox2">
+            <div id="bar4" class="bars"></div>
+            <div id="bar5" class="bars"></div>
+            <div id="bar6" class="bars"></div>
+        </label> -->
+
+    </div>
+</nav>

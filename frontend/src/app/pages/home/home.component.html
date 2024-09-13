@@ -1,0 +1,80 @@
+<div class="page-title">
+  <h3> Home </h3>
+  <div class="post-btn-con" *ngIf="checkUser()">
+
+
+    <div class="home-head-con">
+      <form [formGroup]="searchForm" class="searchForm-con">
+        <!-- <mat-form-field>
+          <mat-label>City</mat-label>
+          <mat-select formControlName="city" panelClass="custom-select-panel">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let type of cities" [value]="type.name">
+              {{ type.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> -->
+
+        <!-- <mat-form-field> -->
+        <input type="text" placeholder="City" formControlName="city" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let type of cities" [value]="type.name">
+            {{ type.name }}
+          </mat-option>
+        </mat-autocomplete>
+
+        <input type="text" placeholder="Type" aria-label="Type" matInput formControlName="type"
+          [matAutocomplete]="auto1">
+        <mat-autocomplete #auto1="matAutocomplete">
+          <!-- <mat-select > -->
+          <mat-option>None</mat-option>
+          <mat-option formControlName="type" *ngFor="let type of postType" [value]="type.name">
+            {{type.name}}
+          </mat-option>
+          <!-- </mat-select> -->
+        </mat-autocomplete>
+        <!-- </mat-form-field> -->
+        <button *ngIf="searchForm.value.city || searchForm.value.type" [disabled]="searchForm.invalid"
+          class="filter-btn cancle-btn" (click)="onCancle()"> <mat-icon>close</mat-icon> </button>
+        <button [disabled]="searchForm.invalid" class="filter-btn" (click)="onSearchPost()"> <mat-icon>search</mat-icon>
+        </button>
+
+      </form>
+      <button (click)="editPost()" class="create-btn"> <mat-icon>add_circle</mat-icon> Post </button>
+    </div>
+    <!-- <button (click)="editPost()"  class="logout-btn"> ပို့စ်အသစ် </button> -->
+  </div>
+</div>
+
+<div class="post-support" *ngIf="!checkUser()"></div>
+<div *ngIf="!postList.length" class="post-con no-post-con">
+  <p>There is no post.</p>
+</div>
+<div *ngIf="postList.length" class="post-con">
+  <div *ngFor="let item of postList" class="card-container">
+    <div >
+
+      <img [src]="item.img[0]" (click)="showPostDialog(item)" alt="Image">
+      <div class="home-btn-con">
+        <a mat-button class="home-btn" *ngIf="userObj.type !== 2" (click)="showPostDialog(item)" matTooltip="Details">
+          <img  src="assets/info-2.svg" alt="info svg"> </a>
+        <a mat-button *ngIf="userObj.type !== 2 && checkProperty(item.created_user_id) || userObj.type === 0"
+          class="home-btn" (click)="editPost(item)" matTooltip="Edit"> <img  src="assets/settings-2.svg" alt="info svg"> </a>
+        <a mat-button *ngIf="userObj.type !== 2 && checkProperty(item.created_user_id) || userObj.type === 0"
+          class="home-btn delete-btn" (click)="deletePost(item.id)" matTooltip="Delete"> <img  src="assets/trash-2.svg" alt="info svg"></a>
+      </div>
+    </div>
+
+    <!-- <p><strong>အမျိုးအစား:</strong> {{ item.title }}</p> -->
+    <p><mat-icon> pin_drop</mat-icon>: {{item.location}}</p>
+    <div class="post-icon-con">
+      
+      <p><mat-icon>king_bed</mat-icon>: </p>
+      <p><mat-icon>square_foot</mat-icon>: </p>
+      <p><mat-icon>aspect_ratio</mat-icon>: </p>
+    </div>
+    <p>Price: {{item.price}}</p>
+
+  </div>
+</div>

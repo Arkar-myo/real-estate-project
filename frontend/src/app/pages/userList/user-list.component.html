@@ -1,0 +1,63 @@
+<div class="page-title">
+    <h3>Users</h3>
+    <div class="create-btn-con">
+        <button (click)="createUser()" class="create-button">
+            <mat-icon>person_add</mat-icon> New User
+        </button>
+    </div>
+</div>
+
+
+<div class="user-table-con">
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8 user-table">
+
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+            <mat-cell *matCellDef="let user">{{ user.name }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+            <mat-cell *matCellDef="let user">{{ user.email }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+            <mat-header-cell *matHeaderCellDef>Type</mat-header-cell>
+            <mat-cell *matCellDef="let user">
+                <p *ngIf="user.type === 0">Admin</p>
+                <p *ngIf="user.type === 1">Premium</p>
+                <p *ngIf="user.type === 2">Normal</p>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="address">
+            <mat-header-cell *matHeaderCellDef>Address</mat-header-cell>
+            <mat-cell *matCellDef="let user">{{ user.address }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="phone">
+            <mat-header-cell *matHeaderCellDef>Phone</mat-header-cell>
+            <mat-cell *matCellDef="let user">{{ user.phone }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actions" stickyEnd>
+            <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+            <mat-cell *matCellDef="let user">
+                <div class="actions-con">
+                    <a mat-icon-button (click)="editUser(user.id)" class="user-edit-btn" matTooltip="Edit">
+                        <img  src="assets/settings-2.svg" alt="info svg">
+                    </a>
+                    <a mat-icon-button (click)="deleteUser(user.id)" class="user-delete-btn" matTooltip="Delete">
+                        <img  src="assets/trash-2.svg" alt="info svg">
+                    </a>
+                </div>
+            </mat-cell>
+        </ng-container>
+
+        <!-- Table rows -->
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[10, 25, 100]" showFirstLastButtons></mat-paginator>
+</div>

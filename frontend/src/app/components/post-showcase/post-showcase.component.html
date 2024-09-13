@@ -1,0 +1,63 @@
+<div class="dialog-con">
+
+  <h2 mat-dialog-title class="dialog-title">Property Details</h2>
+  <mat-dialog-content>
+    <a class="close-btn" [mat-dialog-close]="true"> <img src="assets/x.svg" alt="close button"> </a>
+    <div class="dialog-content">
+      <div class="status-container">
+        <div class="verified-con" *ngIf="postData.verified">
+          <label class="verified-icon"><mat-icon class="icon-display">verified_user</mat-icon></label>
+        </div>
+        <div class="post-input-con" *ngIf="postData.soldOut">
+          <label class="input-label sold-out">Sold Out</label>
+        </div>
+      </div>
+
+      <div class="details-grid">
+        <!-- <div class="post-input-con" *ngIf="postData.verified">
+        <label class="input-label"><img src="assets/file-text.svg" alt="file icon">:</label>
+        <p class="input-text check-icon" *ngIf="postData.gran"><mat-icon>check_circle</mat-icon></p>
+        <p class="input-text cancel-icon" *ngIf="!postData.gran"><mat-icon>cancel</mat-icon></p>
+      </div> -->
+
+        <div class="post-input-con">
+          <label class="input-label">Type:</label>
+          <p class="input-text">{{ postData.title }}</p>
+        </div>
+
+        <div class="post-input-con">
+          <label class="input-label">Price:</label>
+          <p class="input-text">{{ postData.price }}</p>
+        </div>
+
+        <div class="post-input-con">
+          <label class="input-label">City:</label>
+          <p class="input-text">{{ postData.city }}</p>
+        </div>
+
+        <div class="post-input-con">
+          <label class="input-label">Location:</label>
+          <p class="input-text">{{ postData.location }}</p>
+        </div>
+
+        <div class="post-input-con">
+          <label class="input-label">Detail:</label>
+          <p class="input-text">{{ postData.description }}</p>
+        </div>
+
+        <div class="post-input-con">
+          <label class="input-label">Contact:</label>
+          <p class="input-text">{{ postData.phone }}</p>
+        </div>
+      </div>
+
+      <div class="image-preview-container" *ngIf="imageList">
+        <div class="image-preview-grid">
+          <div *ngFor="let eachImage of imageList">
+            <img class="image-preview" [src]="eachImage" alt="Preview">
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+</div>

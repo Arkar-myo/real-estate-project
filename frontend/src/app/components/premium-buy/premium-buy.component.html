@@ -1,0 +1,50 @@
+<h2 mat-dialog-title> Buy Premium </h2>
+
+<form [formGroup]="transacForm" class="postForm-con">
+
+  <mat-dialog-content>
+    <div class="trans-left">
+      <div class="post-input-con">
+        <mat-form-field appearance="outline">
+          <mat-label> Phone </mat-label>
+          <input matInput placeholder="Enter account number" formControlName="phone">
+        </mat-form-field>
+      </div>
+
+
+      <div class="post-input-con">
+        <mat-form-field appearance="outline">
+          <mat-label> Account Name </mat-label>
+          <input matInput placeholder="Enter account name" formControlName="accName">
+        </mat-form-field>
+
+      </div>
+
+      <div class="post-input-con">
+        <mat-form-field appearance="outline">
+          <mat-label> Transaction ID </mat-label>
+          <input matInput placeholder="Enter id" formControlName="transactionId">
+        </mat-form-field>
+
+      </div>
+
+      <div class="post-input-con">
+        <mat-form-field appearance="outline">
+          <mat-label> Amount </mat-label>
+          <input matInput placeholder="Enter price" formControlName="payAmount">
+        </mat-form-field>
+
+      </div>
+    </div>
+
+    <div class="trans-right">
+      <img src="assets/nmKpay.JPG" alt="KapyQR">
+    </div>
+  </mat-dialog-content>
+
+</form>
+
+<mat-dialog-actions>
+  <button mat-button class="btn-con upload-btn" (click)="onSubmitTrans()"> Submit </button>
+ 
+</mat-dialog-actions>

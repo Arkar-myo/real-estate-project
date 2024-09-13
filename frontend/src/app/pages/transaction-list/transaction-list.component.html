@@ -1,0 +1,55 @@
+<div class="page-title">
+    <h3> Transactions </h3>
+</div>
+
+<div class="user-table-con">
+
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8 user-table">
+        
+        <ng-container matColumnDef="acc_name">
+            <mat-header-cell *matHeaderCellDef>Kpay Name</mat-header-cell>
+            <mat-cell *matCellDef="let user">{{ user.acc_name }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="phone">
+            <mat-header-cell *matHeaderCellDef>Phone</mat-header-cell>
+            <mat-cell *matCellDef="let user">{{ user.phone }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="transaction_id">
+            <mat-header-cell *matHeaderCellDef>T-ID</mat-header-cell>
+            <mat-cell *matCellDef="let user">{{ user.transaction_id }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="pay_amount">
+            <mat-header-cell *matHeaderCellDef>Pay Amount</mat-header-cell>
+            <mat-cell *matCellDef="let user">{{ user.pay_amount }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="user_id">
+            <mat-header-cell *matHeaderCellDef>User Detail</mat-header-cell>
+            <mat-cell *matCellDef="let user" ><mat-slide-toggle [checked]="checkUserType(user.user_id)" (change)="onChangeToggle(user.user_id, toggle.checked)" #toggle>Switch User Role:</mat-slide-toggle></mat-cell>
+
+        </ng-container>
+
+        <ng-container matColumnDef="user_name">
+            <mat-header-cell *matHeaderCellDef>Account Name</mat-header-cell>
+            <mat-cell *matCellDef="let user" >{{showUserName(user.user_id)}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="user_type">
+            <mat-header-cell *matHeaderCellDef>User Type</mat-header-cell>
+            <mat-cell *matCellDef="let user" >{{showUserType(user.user_id)}}</mat-cell>
+        </ng-container>
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[10, 25, 100]" showFirstLastButtons></mat-paginator>
+
+</div>
+
+
+            <!-- <mat-cell *matCellDef="let user" (click)="editUser(user.user_id)"><button>Account Details</button></mat-cell> -->
